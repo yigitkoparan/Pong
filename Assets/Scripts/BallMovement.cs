@@ -18,8 +18,8 @@ public class BallMovement : MonoBehaviour
         }
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        ball.transform.Translate(moveSpeedX*Time.deltaTime,moveSpeedY*Time.deltaTime,0);
+        ball.transform.Translate(moveSpeedX*Time.deltaTime,moveSpeedY*Time.fixedDeltaTime,0);
     }
 }
