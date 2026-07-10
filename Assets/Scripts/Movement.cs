@@ -7,7 +7,12 @@ public class Movement : MonoBehaviour
     private Vector2 movement;
 
     [SerializeField] private float moveSpeed = 1f;
-    [SerializeField] private float yClamp = 4.15f;
+    [SerializeField] private float yClamp = 4.12f;
+
+    public float getClamp()
+    {
+        return yClamp;
+    }
 
     void Awake()
     {
