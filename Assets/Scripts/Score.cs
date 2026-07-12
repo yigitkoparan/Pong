@@ -7,8 +7,10 @@ public class Score : MonoBehaviour
     [SerializeField] TMP_Text opponentT;
     [SerializeField] GameObject player;
     [SerializeField] GameObject opponent;
+    [SerializeField] BallMovement ball;
     int playerStart = 0;
     int opponentStart = 0;
+    float[] directions = { -1f, 1f };
 
     Vector2 playerStartPos;
     Vector2 opponentStartPos;
@@ -31,7 +33,7 @@ public class Score : MonoBehaviour
 
             player.transform.position = playerStartPos;
             opponent.transform.position = opponentStartPos;
-            transform.position = ballStartPos;
+            resetBall();
         }
         if (collision.CompareTag("PlayerScore"))
         {
@@ -40,8 +42,22 @@ public class Score : MonoBehaviour
 
             player.transform.position = playerStartPos;
             opponent.transform.position = opponentStartPos;
-            transform.position = ballStartPos;
+            resetBall();
         }
+    }
+
+    void resetBall()
+    {
+        transform.position = ballStartPos;
+        ball.MoveX = Random.Range(4f, 6f);
+        ball.MoveY = Random.Range(4f, 6f);
+
+        ball.XDirection = directions[Random.Range(0, directions.Length)];
+        
+        ball.YDirection = directions[Random.Range(0, directions.Length)];
+
+        ball.MoveX = ball.MoveX * ball.XDirection;
+        ball.MoveY = ball.MoveY * ball.YDirection;
     }
         
 
