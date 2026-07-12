@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Wall
   - Enemy
+  - OppScore
+  - PlayerScore
   layers:
   - Default
   - TransparentFX
