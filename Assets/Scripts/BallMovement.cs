@@ -3,23 +3,39 @@ using UnityEngine;
 public class BallMovement : MonoBehaviour
 {
     [SerializeField] GameObject ball;
-    [SerializeField] float moveSpeedX = 5f;
-    [SerializeField] float moveSpeedY = 5f;
+    float moveX;
+    float moveY;
 
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag.Equals("Wall"))
         {
-            moveSpeedY = -moveSpeedY;
+            moveY = -moveY;
         }
         if(collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Enemy"))
         {
-            moveSpeedX = -moveSpeedX;
+            moveX = -moveX;
         }
     }
 
+    void Start()
+    {
+        moveX = Random.Range(4f, 6f);
+        moveY = Random.Range(4f, 6f);
+
+        float[] directions = { -1f, 1f };
+
+        float xDirection = directions[Random.Range(0, directions.Length)];
+        
+        float yDirection = directions[Random.Range(0, directions.Length)];
+
+        moveX *= xDirection;
+        moveY *= yDirection;
+    }
+
+
     void FixedUpdate()
     {
-        ball.transform.Translate(moveSpeedX*Time.deltaTime,moveSpeedY*Time.fixedDeltaTime,0);
+        transform.Translate(moveX * Time.fixedDeltaTime, moveY * Time.fixedDeltaTime, 0f);
     }
 }
