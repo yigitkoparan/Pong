@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class BallMovement : MonoBehaviour
 {
+    [SerializeField] AudioSource audioSource;
+
     float moveX;
     float moveY;
     float[] directions = { -1f, 1f };
@@ -38,10 +40,12 @@ public class BallMovement : MonoBehaviour
         if (collision.gameObject.tag.Equals("Wall"))
         {
             moveY = -moveY;
+            audioSource.Play();
         }
         if(collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Enemy"))
         {
             moveX = -moveX;
+            audioSource.Play();
         }
     }
 
